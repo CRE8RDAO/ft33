@@ -1,5 +1,5 @@
 import {
-    SUSHI_OHMDAI_PAIR, SUSHI_XSUSHI_ETH_PAIR, SUSHI_USDC_ETH_PAIR, SUSHI_CVX_ETH_PAIR
+    UNI_BRICKFRAX_PAIR, SUSHI_USDC_ETH_PAIR
 } from './Constants'
 import { Address, BigDecimal, BigInt, log } from '@graphprotocol/graph-ts'
 import { UniswapV2Pair } from '../../generated/OlympusStakingV1/UniswapV2Pair';
@@ -22,48 +22,21 @@ export function getETHUSDRate(): BigDecimal {
     return ethRate
 }
 
-export function getOHMUSDRate(): BigDecimal {
-    let pair = UniswapV2Pair.bind(Address.fromString(SUSHI_OHMDAI_PAIR))
+export function getBRICKUSDRate(): BigDecimal {
+    let pair = UniswapV2Pair.bind(Address.fromString(UNI_BRICKFRAX_PAIR))
 
     let reserves = pair.getReserves()
     let reserve0 = reserves.value0.toBigDecimal()
     let reserve1 = reserves.value1.toBigDecimal()
 
-    let ohmRate = reserve1.div(reserve0).div(BIG_DECIMAL_1E9)
-    log.debug("OHM rate {}", [ohmRate.toString()])
+    let brickRate = reserve1.div(reserve0).div(BIG_DECIMAL_1E9)
+    log.debug("BRICK rate {}", [brickRate.toString()])
 
-    return ohmRate
+    return brickRate
 }
 
-export function getXsushiUSDRate(): BigDecimal {
-    let pair = UniswapV2Pair.bind(Address.fromString(SUSHI_XSUSHI_ETH_PAIR))
 
-    let reserves = pair.getReserves()
-    let reserve0 = reserves.value0.toBigDecimal()
-    let reserve1 = reserves.value1.toBigDecimal()
-
-    let xsushiRate = reserve1.div(reserve0).times(getETHUSDRate())
-    log.debug("xsushiRate rate {}", [xsushiRate.toString()])
-
-    return xsushiRate
-
-}
-
-export function getCVXUSDRate(): BigDecimal {
-    let pair = UniswapV2Pair.bind(Address.fromString(SUSHI_CVX_ETH_PAIR))
-
-    let reserves = pair.getReserves()
-    let reserve0 = reserves.value0.toBigDecimal()
-    let reserve1 = reserves.value1.toBigDecimal()
-
-    let xsushiRate = reserve1.div(reserve0).times(getETHUSDRate())
-    log.debug("cvx rate {}", [xsushiRate.toString()])
-
-    return xsushiRate
-
-}
-
-//(slp_treasury/slp_supply)*(2*sqrt(lp_dai * lp_ohm))
+//(slp_treasury/slp_supply)*(2*sqrt(lp_dai * lp_brick))
 export function getDiscountedPairUSD(lp_amount: BigInt, pair_adress: string): BigDecimal{
     let pair = UniswapV2Pair.bind(Address.fromString(pair_adress))
 
@@ -87,8 +60,8 @@ export function getPairUSD(lp_amount: BigInt, pair_adress: string): BigDecimal{
     let lp_token_0 = pair.getReserves().value0
     let lp_token_1 = pair.getReserves().value1
     let ownedLP = toDecimal(lp_amount,18).div(toDecimal(total_lp,18))
-    let ohm_value = toDecimal(lp_token_0, 9).times(getOHMUSDRate())
-    let total_lp_usd = ohm_value.plus(toDecimal(lp_token_1, 18))
+    let brick_value = toDecimal(lp_token_0, 9).times(getBRICKUSDRate())
+    let total_lp_usd = brick_value.plus(toDecimal(lp_token_1, 18))
 
     return ownedLP.times(total_lp_usd)
 }
@@ -99,9 +72,9 @@ export function getPairWETH(lp_amount: BigInt, pair_adress: string): BigDecimal{
     let lp_token_0 = pair.getReserves().value0
     let lp_token_1 = pair.getReserves().value1
     let ownedLP = toDecimal(lp_amount,18).div(toDecimal(total_lp,18))
-    let ohm_value = toDecimal(lp_token_0, 9).times(getOHMUSDRate())
+    let brick_value = toDecimal(lp_token_0, 9).times(getBRICKUSDRate())
     let eth_value = toDecimal(lp_token_1, 18).times(getETHUSDRate())
-    let total_lp_usd = ohm_value.plus(eth_value)
+    let total_lp_usd = brick_value.plus(eth_value)
 
     return ownedLP.times(total_lp_usd)
 }

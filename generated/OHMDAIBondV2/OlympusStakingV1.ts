@@ -128,8 +128,8 @@ export class OlympusStakingV1 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  stakeOHM(amountToStake_: BigInt): boolean {
-    let result = super.call("stakeOHM", "stakeOHM(uint256):(bool)", [
+  stakeBRICK(amountToStake_: BigInt): boolean {
+    let result = super.call("stakeBRICK", "stakeBRICK(uint256):(bool)", [
       ethereum.Value.fromUnsignedBigInt(amountToStake_)
     ]);
 
@@ -137,7 +137,7 @@ export class OlympusStakingV1 extends ethereum.SmartContract {
   }
 
   try_stakeOHM(amountToStake_: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("stakeOHM", "stakeOHM(uint256):(bool)", [
+    let result = super.tryCall("stakeBRICK", "stakeBRICK(uint256):(bool)", [
       ethereum.Value.fromUnsignedBigInt(amountToStake_)
     ]);
     if (result.reverted) {
@@ -147,8 +147,8 @@ export class OlympusStakingV1 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  unstakeOHM(amountToWithdraw_: BigInt): boolean {
-    let result = super.call("unstakeOHM", "unstakeOHM(uint256):(bool)", [
+  unstakeBRICK(amountToWithdraw_: BigInt): boolean {
+    let result = super.call("unstakeBRICK", "unstakeBRICK(uint256):(bool)", [
       ethereum.Value.fromUnsignedBigInt(amountToWithdraw_)
     ]);
 
@@ -156,7 +156,7 @@ export class OlympusStakingV1 extends ethereum.SmartContract {
   }
 
   try_unstakeOHM(amountToWithdraw_: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("unstakeOHM", "unstakeOHM(uint256):(bool)", [
+    let result = super.tryCall("unstakeBRICK", "unstakeBRICK(uint256):(bool)", [
       ethereum.Value.fromUnsignedBigInt(amountToWithdraw_)
     ]);
     if (result.reverted) {
@@ -261,7 +261,7 @@ export class SetEpochLengthintBlockCall__Outputs {
   }
 }
 
-export class StakeOHMCall extends ethereum.Call {
+export class StakeBRICKCall extends ethereum.Call {
   get inputs(): StakeOHMCall__Inputs {
     return new StakeOHMCall__Inputs(this);
   }
@@ -272,9 +272,9 @@ export class StakeOHMCall extends ethereum.Call {
 }
 
 export class StakeOHMCall__Inputs {
-  _call: StakeOHMCall;
+  _call: StakeBRICKCall;
 
-  constructor(call: StakeOHMCall) {
+  constructor(call: StakeBRICKCall) {
     this._call = call;
   }
 
@@ -284,9 +284,9 @@ export class StakeOHMCall__Inputs {
 }
 
 export class StakeOHMCall__Outputs {
-  _call: StakeOHMCall;
+  _call: StakeBRICKCall;
 
-  constructor(call: StakeOHMCall) {
+  constructor(call: StakeBRICKCall) {
     this._call = call;
   }
 
