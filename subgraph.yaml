@@ -12,35 +12,35 @@ dataSources:
       address: '0xbB8b39A92D916D4c1c46c67CA22920A366127A4B'
       abi: BrickStaking
       # startBlock: 12112800
-    # mapping:
-    #   kind: ethereum/events
-    #   apiVersion: 0.0.5
-    #   language: wasm/assemblyscript
-    #   entities:
-    #     - BrickStaking
-    #   abis:
-    #     - name: BrickStaking
-    #       file: ./abis/OlympusStaking.json
-    #     - name: BrickERC20
-    #       file: ./abis/OlympusERC20Token.json
-    #     - name: sBrickERC20
-    #       file: ./abis/sOlympus.json
-    #     - name: FraxBond
-    #       file: ./abis/FraxBondDepository.json
-    #     - name: BrickFraxBond
-    #       file: ./abis/BrickFraxBondDepository.json
-    #     - name: WrappedTokenBond
-    #       file: ./abis/WrappedTokenBondDepository.json
-    #     - name: BondingCalculator
-    #       file: ./abis/OlympusBondingCalculator.json
-    #     - name: ERC20
-    #       file: ./abis/ERC20.json
-    #   callHandlers:
-    #     - function: stake(uint256,address)
-    #       handler: handleStake
-    #     - function: unstake(uint256,bool)
-    #       handler: handleUnstake
-    #   file: ./src/OlympusStakingV1.ts
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - BrickStaking
+      abis:
+        - name: BrickStaking
+          file: ./abis/OlympusStaking.json
+        - name: BrickERC20
+          file: ./abis/OlympusERC20Token.json
+        - name: sBrickERC20
+          file: ./abis/sOlympus.json
+        - name: FraxBond
+          file: ./abis/FraxBondDepository.json
+        - name: BrickFraxBond
+          file: ./abis/BrickFraxBondDepository.json
+        - name: WrappedTokenBond
+          file: ./abis/WrappedTokenBondDepository.json
+        - name: BondingCalculator
+          file: ./abis/OlympusBondingCalculator.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      callHandlers:
+        - function: stake(uint256,address)
+          handler: handleStake
+        - function: unstake(uint256,bool)
+          handler: handleUnstake
+      file: ./src/OlympusStakingV1.ts
   #FRAX Bond Contract V1
   - kind: ethereum/contract
     name: FraxBond
@@ -49,35 +49,35 @@ dataSources:
       address: '0xd3D1aD79DC0eeF622f71E786270CFf53719D261C'
       abi: FraxBond
       # startBlock: 12280908
-    # mapping:
-    #   kind: ethereum/events
-    #   apiVersion: 0.0.5
-    #   language: wasm/assemblyscript
-    #   entities:
-    #     - FRAXBondDeposit
-    #   abis:
-    #     - name: BrickStaking
-    #       file: ./abis/OlympusStaking.json
-    #     - name: BrickERC20
-    #       file: ./abis/OlympusERC20Token.json
-    #     - name: sBrickERC20
-    #       file: ./abis/sOlympus.json
-    #     - name: FraxBond
-    #       file: ./abis/FraxBondDepository.json
-    #     - name: BrickFraxBond
-    #       file: ./abis/BrickFraxBondDepository.json
-    #     - name: WrappedTokenBond
-    #       file: ./abis/WrappedTokenBondDepository.json
-    #     - name: BondingCalculator
-    #       file: ./abis/OlympusBondingCalculator.json
-    #     - name: ERC20
-    #       file: ./abis/ERC20.json
-    #   callHandlers:
-    #     - function: deposit(uint256,uint256,address)
-    #       handler: handleDeposit
-    #     - function: redeem(address,bool)
-    #       handler: handleRedeem
-    #   file: ./src/FRAXBondV1.ts
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - FRAXBondDeposit
+      abis:
+        - name: BrickStaking
+          file: ./abis/OlympusStaking.json
+        - name: BrickERC20
+          file: ./abis/OlympusERC20Token.json
+        - name: sBrickERC20
+          file: ./abis/sOlympus.json
+        - name: FraxBond
+          file: ./abis/FraxBondDepository.json
+        - name: BrickFraxBond
+          file: ./abis/BrickFraxBondDepository.json
+        - name: WrappedTokenBond
+          file: ./abis/WrappedTokenBondDepository.json
+        - name: BondingCalculator
+          file: ./abis/OlympusBondingCalculator.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      callHandlers:
+        - function: deposit(uint256,uint256,address)
+          handler: handleDeposit
+        - function: redeem(address,bool)
+          handler: handleRedeem
+      file: ./src/FRAXBondV1.ts
   #BRICK FRAX LP Bond Contract V1
   - kind: ethereum/contract
     name: BrickFraxBond
@@ -86,35 +86,35 @@ dataSources:
       address: '0x1cB859d5e17e785BB41e1BDe5A1FC962BfEE8A5e'
       abi: BrickFraxBond
       # startBlock: 12154429
-    # mapping:
-    #   kind: ethereum/events
-    #   apiVersion: 0.0.5
-    #   language: wasm/assemblyscript
-    #   entities:
-    #     - BrickFraxBond
-    #   abis:
-    #     - name: BrickStaking
-    #       file: ./abis/OlympusStaking.json
-    #     - name: BrickERC20
-    #       file: ./abis/OlympusERC20Token.json
-    #     - name: sBrickERC20
-    #       file: ./abis/sOlympus.json
-    #     - name: FraxBond
-    #       file: ./abis/FraxBondDepository.json
-    #     - name: BrickFraxBond
-    #       file: ./abis/BrickFraxBondDepository.json
-    #     - name: WrappedTokenBond
-    #       file: ./abis/WrappedTokenBondDepository.json
-    #     - name: BondingCalculator
-    #       file: ./abis/OlympusBondingCalculator.json
-    #     - name: ERC20
-    #       file: ./abis/ERC20.json
-    #   callHandlers:
-    #     - function: deposit(uint256,uint256,address)
-    #       handler: handleDeposit
-    #     - function: redeem(address,bool)
-    #       handler: handleRedeem
-    #   file: ./src/BRICKFRAXBondV1.ts
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - BrickFraxBond
+      abis:
+        - name: BrickStaking
+          file: ./abis/OlympusStaking.json
+        - name: BrickERC20
+          file: ./abis/OlympusERC20Token.json
+        - name: sBrickERC20
+          file: ./abis/sOlympus.json
+        - name: FraxBond
+          file: ./abis/FraxBondDepository.json
+        - name: BrickFraxBond
+          file: ./abis/BrickFraxBondDepository.json
+        - name: WrappedTokenBond
+          file: ./abis/WrappedTokenBondDepository.json
+        - name: BondingCalculator
+          file: ./abis/OlympusBondingCalculator.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      callHandlers:
+        - function: deposit(uint256,uint256,address)
+          handler: handleDeposit
+        - function: redeem(address,bool)
+          handler: handleRedeem
+      file: ./src/BRICKFRAXBondV1.ts
   #WToken
   - kind: ethereum/contract
     name: WrappedTokenBond
@@ -123,35 +123,35 @@ dataSources:
       address: '0x6fE3e4644a1CBB087D411A52C931B630cD5F899f'
       abi: WrappedTokenBond
       # startBlock: 12959821
-    # mapping:
-    #   kind: ethereum/events
-    #   apiVersion: 0.0.5
-    #   language: wasm/assemblyscript
-    #   entities:
-    #     - WrappedTokenBond
-    #   abis:
-    #     - name: BrickStaking
-    #       file: ./abis/OlympusStaking.json
-    #     - name: BrickERC20
-    #       file: ./abis/OlympusERC20Token.json
-    #     - name: sBrickERC20
-    #       file: ./abis/sOlympus.json
-    #     - name: FraxBond
-    #       file: ./abis/FraxBondDepository.json
-    #     - name: BrickFraxBond
-    #       file: ./abis/BrickFraxBondDepository.json
-    #     - name: WrappedTokenBond
-    #       file: ./abis/WrappedTokenBondDepository.json
-    #     - name: BondingCalculator
-    #       file: ./abis/OlympusBondingCalculator.json
-    #     - name: ERC20
-    #       file: ./abis/ERC20.json
-    #   callHandlers:
-    #     - function: deposit(uint256,uint256,address)
-    #       handler: handleDeposit
-    #     - function: redeem(address,bool)
-    #       handler: handleRedeem
-    #   file: ./src/ETHBondV1.ts
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - WrappedTokenBond
+      abis:
+        - name: BrickStaking
+          file: ./abis/OlympusStaking.json
+        - name: BrickERC20
+          file: ./abis/OlympusERC20Token.json
+        - name: sBrickERC20
+          file: ./abis/sOlympus.json
+        - name: FraxBond
+          file: ./abis/FraxBondDepository.json
+        - name: BrickFraxBond
+          file: ./abis/BrickFraxBondDepository.json
+        - name: WrappedTokenBond
+          file: ./abis/WrappedTokenBondDepository.json
+        - name: BondingCalculator
+          file: ./abis/OlympusBondingCalculator.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      callHandlers:
+        - function: deposit(uint256,uint256,address)
+          handler: handleDeposit
+        - function: redeem(address,bool)
+          handler: handleRedeem
+      file: ./src/ETHBondV1.ts
   #sBRICK
   - kind: ethereum/contract
     name: sBrickERC20V1
@@ -160,20 +160,20 @@ dataSources:
       address: '0x230a8dC3c34336372b75549915DeBAEAACCF129D'
       abi: sBrickERC20
       # startBlock: 12112800
-    # mapping:
-    #   kind: ethereum/events
-    #   apiVersion: 0.0.5
-    #   language: wasm/assemblyscript
-    #   entities:
-    #     - sBrickERC20V1
-    #   abis:
-    #     - name: sBrickERC20
-    #       file: ./abis/sOlympus.json
-    #     - name: BrickERC20
-    #       file: ./abis/OlympusERC20Token.json
-    #     - name: UniswapV2Pair
-    #       file: ./abis/UniswapV2Pair.json
-    #   callHandlers:
-    #     - function: rebase(uint256,uint256)
-    #       handler: rebaseFunction
-    #   file: ./src/sOlympusERC20V1.ts
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - sBrickERC20V1
+      abis:
+        - name: sBrickERC20
+          file: ./abis/sOlympus.json
+        - name: BrickERC20
+          file: ./abis/OlympusERC20Token.json
+        - name: UniswapV2Pair
+          file: ./abis/UniswapV2Pair.json
+      callHandlers:
+        - function: rebase(uint256,uint256)
+          handler: rebaseFunction
+      file: ./src/sOlympusERC20V1.ts
