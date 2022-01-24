@@ -852,7 +852,7 @@ export class Transaction extends Entity {
     this.set("blockHash", Value.fromBytes(Bytes.empty()));
     this.set("from", Value.fromBytes(Bytes.empty()));
     this.set("value", Value.fromBigInt(BigInt.zero()));
-    this.set("gasUsed", Value.fromBigInt(BigInt.zero()));
+    this.set("gasLimit", Value.fromBigInt(BigInt.zero()));
     this.set("gasPrice", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -944,13 +944,13 @@ export class Transaction extends Entity {
     this.set("value", Value.fromBigInt(value));
   }
 
-  get gasUsed(): BigInt {
-    let value = this.get("gasUsed");
+  get gasLimit(): BigInt {
+    let value = this.get("gasLimit");
     return value!.toBigInt();
   }
 
-  set gasUsed(value: BigInt) {
-    this.set("gasUsed", Value.fromBigInt(value));
+  set gasLimit(value: BigInt) {
+    this.set("gasLimit", Value.fromBigInt(value));
   }
 
   get gasPrice(): BigInt {
@@ -1016,44 +1016,23 @@ export class ProtocolMetric extends Entity {
     this.set("nextEpochRebase", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("nextDistributedBrick", Value.fromBigDecimal(BigDecimal.zero()));
     this.set(
-      "treasuryDaiRiskFreeValue",
-      Value.fromBigDecimal(BigDecimal.zero())
-    );
-    this.set(
       "treasuryFraxRiskFreeValue",
-      Value.fromBigDecimal(BigDecimal.zero())
-    );
-    this.set(
-      "treasuryLusdRiskFreeValue",
       Value.fromBigDecimal(BigDecimal.zero())
     );
     this.set(
       "treasuryWETHRiskFreeValue",
       Value.fromBigDecimal(BigDecimal.zero())
     );
-    this.set("treasuryDaiMarketValue", Value.fromBigDecimal(BigDecimal.zero()));
     this.set(
       "treasuryFraxMarketValue",
-      Value.fromBigDecimal(BigDecimal.zero())
-    );
-    this.set(
-      "treasuryLusdMarketValue",
-      Value.fromBigDecimal(BigDecimal.zero())
-    );
-    this.set(
-      "treasuryXsushiMarketValue",
       Value.fromBigDecimal(BigDecimal.zero())
     );
     this.set(
       "treasuryWETHMarketValue",
       Value.fromBigDecimal(BigDecimal.zero())
     );
-    this.set("treasuryCVXMarketValue", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("currentAPY", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("treasuryBrickDaiPOL", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("treasuryBrickFraxPOL", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("treasuryBrickLusdPOL", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("treasuryBrickEthPOL", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("holders", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -1182,15 +1161,6 @@ export class ProtocolMetric extends Entity {
     this.set("nextDistributedBrick", Value.fromBigDecimal(value));
   }
 
-  get treasuryDaiRiskFreeValue(): BigDecimal {
-    let value = this.get("treasuryDaiRiskFreeValue");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryDaiRiskFreeValue(value: BigDecimal) {
-    this.set("treasuryDaiRiskFreeValue", Value.fromBigDecimal(value));
-  }
-
   get treasuryFraxRiskFreeValue(): BigDecimal {
     let value = this.get("treasuryFraxRiskFreeValue");
     return value!.toBigDecimal();
@@ -1198,15 +1168,6 @@ export class ProtocolMetric extends Entity {
 
   set treasuryFraxRiskFreeValue(value: BigDecimal) {
     this.set("treasuryFraxRiskFreeValue", Value.fromBigDecimal(value));
-  }
-
-  get treasuryLusdRiskFreeValue(): BigDecimal {
-    let value = this.get("treasuryLusdRiskFreeValue");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryLusdRiskFreeValue(value: BigDecimal) {
-    this.set("treasuryLusdRiskFreeValue", Value.fromBigDecimal(value));
   }
 
   get treasuryWETHRiskFreeValue(): BigDecimal {
@@ -1218,15 +1179,6 @@ export class ProtocolMetric extends Entity {
     this.set("treasuryWETHRiskFreeValue", Value.fromBigDecimal(value));
   }
 
-  get treasuryDaiMarketValue(): BigDecimal {
-    let value = this.get("treasuryDaiMarketValue");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryDaiMarketValue(value: BigDecimal) {
-    this.set("treasuryDaiMarketValue", Value.fromBigDecimal(value));
-  }
-
   get treasuryFraxMarketValue(): BigDecimal {
     let value = this.get("treasuryFraxMarketValue");
     return value!.toBigDecimal();
@@ -1236,24 +1188,6 @@ export class ProtocolMetric extends Entity {
     this.set("treasuryFraxMarketValue", Value.fromBigDecimal(value));
   }
 
-  get treasuryLusdMarketValue(): BigDecimal {
-    let value = this.get("treasuryLusdMarketValue");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryLusdMarketValue(value: BigDecimal) {
-    this.set("treasuryLusdMarketValue", Value.fromBigDecimal(value));
-  }
-
-  get treasuryXsushiMarketValue(): BigDecimal {
-    let value = this.get("treasuryXsushiMarketValue");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryXsushiMarketValue(value: BigDecimal) {
-    this.set("treasuryXsushiMarketValue", Value.fromBigDecimal(value));
-  }
-
   get treasuryWETHMarketValue(): BigDecimal {
     let value = this.get("treasuryWETHMarketValue");
     return value!.toBigDecimal();
@@ -1261,15 +1195,6 @@ export class ProtocolMetric extends Entity {
 
   set treasuryWETHMarketValue(value: BigDecimal) {
     this.set("treasuryWETHMarketValue", Value.fromBigDecimal(value));
-  }
-
-  get treasuryCVXMarketValue(): BigDecimal {
-    let value = this.get("treasuryCVXMarketValue");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryCVXMarketValue(value: BigDecimal) {
-    this.set("treasuryCVXMarketValue", Value.fromBigDecimal(value));
   }
 
   get currentAPY(): BigDecimal {
@@ -1434,15 +1359,6 @@ export class ProtocolMetric extends Entity {
     }
   }
 
-  get treasuryBrickDaiPOL(): BigDecimal {
-    let value = this.get("treasuryBrickDaiPOL");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryBrickDaiPOL(value: BigDecimal) {
-    this.set("treasuryBrickDaiPOL", Value.fromBigDecimal(value));
-  }
-
   get treasuryBrickFraxPOL(): BigDecimal {
     let value = this.get("treasuryBrickFraxPOL");
     return value!.toBigDecimal();
@@ -1450,24 +1366,6 @@ export class ProtocolMetric extends Entity {
 
   set treasuryBrickFraxPOL(value: BigDecimal) {
     this.set("treasuryBrickFraxPOL", Value.fromBigDecimal(value));
-  }
-
-  get treasuryBrickLusdPOL(): BigDecimal {
-    let value = this.get("treasuryBrickLusdPOL");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryBrickLusdPOL(value: BigDecimal) {
-    this.set("treasuryBrickLusdPOL", Value.fromBigDecimal(value));
-  }
-
-  get treasuryBrickEthPOL(): BigDecimal {
-    let value = this.get("treasuryBrickEthPOL");
-    return value!.toBigDecimal();
-  }
-
-  set treasuryBrickEthPOL(value: BigDecimal) {
-    this.set("treasuryBrickEthPOL", Value.fromBigDecimal(value));
   }
 
   get holders(): BigInt {
@@ -1614,13 +1512,9 @@ export class BondDiscount extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
-    this.set("dai_discount", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("brickdai_discount", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("frax_discount", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("brickfrax_discount", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("eth_discount", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("lusd_discount", Value.fromBigDecimal(BigDecimal.zero()));
-    this.set("bricklusd_discount", Value.fromBigDecimal(BigDecimal.zero()));
   }
 
   save(): void {
@@ -1658,24 +1552,6 @@ export class BondDiscount extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get dai_discount(): BigDecimal {
-    let value = this.get("dai_discount");
-    return value!.toBigDecimal();
-  }
-
-  set dai_discount(value: BigDecimal) {
-    this.set("dai_discount", Value.fromBigDecimal(value));
-  }
-
-  get brickdai_discount(): BigDecimal {
-    let value = this.get("brickdai_discount");
-    return value!.toBigDecimal();
-  }
-
-  set brickdai_discount(value: BigDecimal) {
-    this.set("brickdai_discount", Value.fromBigDecimal(value));
-  }
-
   get frax_discount(): BigDecimal {
     let value = this.get("frax_discount");
     return value!.toBigDecimal();
@@ -1701,23 +1577,5 @@ export class BondDiscount extends Entity {
 
   set eth_discount(value: BigDecimal) {
     this.set("eth_discount", Value.fromBigDecimal(value));
-  }
-
-  get lusd_discount(): BigDecimal {
-    let value = this.get("lusd_discount");
-    return value!.toBigDecimal();
-  }
-
-  set lusd_discount(value: BigDecimal) {
-    this.set("lusd_discount", Value.fromBigDecimal(value));
-  }
-
-  get bricklusd_discount(): BigDecimal {
-    let value = this.get("bricklusd_discount");
-    return value!.toBigDecimal();
-  }
-
-  set bricklusd_discount(value: BigDecimal) {
-    this.set("bricklusd_discount", Value.fromBigDecimal(value));
   }
 }

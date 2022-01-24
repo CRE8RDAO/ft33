@@ -90,7 +90,7 @@ type Transaction @entity {
   from: Bytes!
   to: Bytes
   value: BigInt!
-  gasUsed: BigInt!
+  gasLimit: BigInt!
   gasPrice: BigInt!
 }
 
@@ -111,16 +111,10 @@ type ProtocolMetric @entity {
   treasuryMarketValue: BigDecimal!
   nextEpochRebase: BigDecimal!
   nextDistributedBrick: BigDecimal!
-  treasuryDaiRiskFreeValue: BigDecimal!
   treasuryFraxRiskFreeValue: BigDecimal!
-  treasuryLusdRiskFreeValue: BigDecimal!
   treasuryWETHRiskFreeValue: BigDecimal!
-  treasuryDaiMarketValue: BigDecimal!
   treasuryFraxMarketValue: BigDecimal!
-  treasuryLusdMarketValue: BigDecimal!
-  treasuryXsushiMarketValue: BigDecimal!
   treasuryWETHMarketValue: BigDecimal!
-  treasuryCVXMarketValue: BigDecimal!
   currentAPY: BigDecimal!
   runway2dot5k: BigDecimal
   runway5k: BigDecimal
@@ -131,10 +125,7 @@ type ProtocolMetric @entity {
   runway70k: BigDecimal
   runway100k: BigDecimal
   runwayCurrent: BigDecimal
-  treasuryBrickDaiPOL: BigDecimal!
   treasuryBrickFraxPOL: BigDecimal!
-  treasuryBrickLusdPOL: BigDecimal!
-  treasuryBrickEthPOL: BigDecimal!
   holders: BigInt!
 }
 
@@ -153,11 +144,7 @@ type Aux @entity {
 type BondDiscount @entity {
   id: ID!
   timestamp: BigInt!
-  dai_discount: BigDecimal!
-  brickdai_discount: BigDecimal!
   frax_discount: BigDecimal!
   brickfrax_discount: BigDecimal!
   eth_discount: BigDecimal!
-  lusd_discount: BigDecimal!
-  bricklusd_discount: BigDecimal!
 }

@@ -89,14 +89,14 @@ export function updateBrickieBalance(brickie: Brickie, transaction: Transaction)
 
     //BRICK-FRAX
     if(transaction.blockNumber.gt(BigInt.fromString(BRICKFRAXLPBOND_CONTRACT1_BLOCK))){
-        let bondFRAXDai_contract = BrickFraxBond.bind(Address.fromString(BRICKFRAXLPBOND_CONTRACT1))
-        let pending = bondFRAXDai_contract.bondInfo(Address.fromString(brickie.id))
+        let bondBRICKFRAX_contract = BrickFraxBond.bind(Address.fromString(BRICKFRAXLPBOND_CONTRACT1))
+        let pending = bondBRICKFRAX_contract.bondInfo(Address.fromString(brickie.id))
         if (pending.value1.gt(BigInt.fromString("0"))){
             let pending_bond = toDecimal(pending.value1, 9)
             balance.bondBalance = balance.bondBalance.plus(pending_bond)
 
             let binfo = loadOrCreateContractInfo(brickie.id + transaction.timestamp.toString() + "BrickFraxBondV1")
-            binfo.name = "DAI"
+            binfo.name = "BRICK-FRAX"
             binfo.contract = BRICKFRAXLPBOND_CONTRACT1
             binfo.amount = pending_bond
             binfo.save()
@@ -115,7 +115,7 @@ export function updateBrickieBalance(brickie: Brickie, transaction: Transaction)
             balance.bondBalance = balance.bondBalance.plus(pending_bond)
 
             let binfo = loadOrCreateContractInfo(brickie.id + transaction.timestamp.toString() + "FRAXBondV1")
-            binfo.name = "DAI"
+            binfo.name = "FRAX"
             binfo.contract = FRAXBOND_CONTRACT1
             binfo.amount = pending_bond
             binfo.save()
@@ -133,7 +133,7 @@ export function updateBrickieBalance(brickie: Brickie, transaction: Transaction)
             balance.bondBalance = balance.bondBalance.plus(pending_bond)
 
             let binfo = loadOrCreateContractInfo(brickie.id + transaction.timestamp.toString() + "FRAXBondV1")
-            binfo.name = "DAI"
+            binfo.name = "WETH"
             binfo.contract = FRAXBOND_CONTRACT1
             binfo.amount = pending_bond
             binfo.save()
@@ -143,8 +143,6 @@ export function updateBrickieBalance(brickie: Brickie, transaction: Transaction)
         }
     }
     balance.bonds = bonds
-
-    //TODO add LUSD and BRICKLUSD
 
     //Price
     let usdRate = getBRICKUSDRate()
