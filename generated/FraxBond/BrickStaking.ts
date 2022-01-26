@@ -54,6 +54,50 @@ export class OwnershipPushed__Params {
   }
 }
 
+export class Stake extends ethereum.Event {
+  get params(): Stake__Params {
+    return new Stake__Params(this);
+  }
+}
+
+export class Stake__Params {
+  _event: Stake;
+
+  constructor(event: Stake) {
+    this._event = event;
+  }
+
+  get _amount(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get _recipient(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
+export class UnStake extends ethereum.Event {
+  get params(): UnStake__Params {
+    return new UnStake__Params(this);
+  }
+}
+
+export class UnStake__Params {
+  _event: UnStake;
+
+  constructor(event: UnStake) {
+    this._event = event;
+  }
+
+  get _amount(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get _trigger(): boolean {
+    return this._event.parameters[1].value.toBoolean();
+  }
+}
+
 export class BrickStaking__epochResult {
   value0: BigInt;
   value1: BigInt;
@@ -105,19 +149,28 @@ export class BrickStaking extends ethereum.SmartContract {
     return new BrickStaking("BrickStaking", address);
   }
 
-  OHM(): Address {
-    let result = super.call("OHM", "OHM():(address)", []);
+  stake(_amount: BigInt, _recipient: Address): boolean {
+    let result = super.call("stake", "stake(uint256,address):(bool)", [
+      ethereum.Value.fromUnsignedBigInt(_amount),
+      ethereum.Value.fromAddress(_recipient)
+    ]);
 
-    return result[0].toAddress();
+    return result[0].toBoolean();
   }
 
-  try_OHM(): ethereum.CallResult<Address> {
-    let result = super.tryCall("OHM", "OHM():(address)", []);
+  try_stake(
+    _amount: BigInt,
+    _recipient: Address
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall("stake", "stake(uint256,address):(bool)", [
+      ethereum.Value.fromUnsignedBigInt(_amount),
+      ethereum.Value.fromAddress(_recipient)
+    ]);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   contractBalance(): BigInt {
@@ -238,6 +291,21 @@ export class BrickStaking extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  OHM(): Address {
+    let result = super.call("OHM", "OHM():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_OHM(): ethereum.CallResult<Address> {
+    let result = super.tryCall("OHM", "OHM():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   sOHM(): Address {
     let result = super.call("sOHM", "sOHM():(address)", []);
 
@@ -251,30 +319,6 @@ export class BrickStaking extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  stake(_amount: BigInt, _recipient: Address): boolean {
-    let result = super.call("stake", "stake(uint256,address):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_amount),
-      ethereum.Value.fromAddress(_recipient)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_stake(
-    _amount: BigInt,
-    _recipient: Address
-  ): ethereum.CallResult<boolean> {
-    let result = super.tryCall("stake", "stake(uint256,address):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_amount),
-      ethereum.Value.fromAddress(_recipient)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   totalBonus(): BigInt {
@@ -361,52 +405,6 @@ export class BrickStaking extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-}
-
-export class ConstructorCall extends ethereum.Call {
-  get inputs(): ConstructorCall__Inputs {
-    return new ConstructorCall__Inputs(this);
-  }
-
-  get outputs(): ConstructorCall__Outputs {
-    return new ConstructorCall__Outputs(this);
-  }
-}
-
-export class ConstructorCall__Inputs {
-  _call: ConstructorCall;
-
-  constructor(call: ConstructorCall) {
-    this._call = call;
-  }
-
-  get _OHM(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get _sOHM(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get _epochLength(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _firstEpochNumber(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
-  }
-
-  get _firstEpochTime(): BigInt {
-    return this._call.inputValues[4].value.toBigInt();
-  }
-}
-
-export class ConstructorCall__Outputs {
-  _call: ConstructorCall;
-
-  constructor(call: ConstructorCall) {
-    this._call = call;
   }
 }
 
@@ -548,6 +546,52 @@ export class PushManagementCall__Outputs {
   _call: PushManagementCall;
 
   constructor(call: PushManagementCall) {
+    this._call = call;
+  }
+}
+
+export class ConstructorCall extends ethereum.Call {
+  get inputs(): ConstructorCall__Inputs {
+    return new ConstructorCall__Inputs(this);
+  }
+
+  get outputs(): ConstructorCall__Outputs {
+    return new ConstructorCall__Outputs(this);
+  }
+}
+
+export class ConstructorCall__Inputs {
+  _call: ConstructorCall;
+
+  constructor(call: ConstructorCall) {
+    this._call = call;
+  }
+
+  get _OHM(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _sOHM(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _epochLength(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+
+  get _firstEpochNumber(): BigInt {
+    return this._call.inputValues[3].value.toBigInt();
+  }
+
+  get _firstEpochTime(): BigInt {
+    return this._call.inputValues[4].value.toBigInt();
+  }
+}
+
+export class ConstructorCall__Outputs {
+  _call: ConstructorCall;
+
+  constructor(call: ConstructorCall) {
     this._call = call;
   }
 }

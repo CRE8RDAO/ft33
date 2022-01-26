@@ -9,7 +9,7 @@ dataSources:
     name: BrickStaking
     network: rinkeby
     source:
-      address: '0xbB8b39A92D916D4c1c46c67CA22920A366127A4B'
+      address: "0xbB8b39A92D916D4c1c46c67CA22920A366127A4B"
       abi: BrickStaking
       # startBlock: 12112800
     mapping:
@@ -35,18 +35,25 @@ dataSources:
           file: ./abis/OlympusBondingCalculator.json
         - name: ERC20
           file: ./abis/ERC20.json
-      callHandlers:
-        - function: stake(uint256,address)
+        - name: UniswapV2Pair
+          file: ./abis/UniswapV2Pair.json
+      eventHandlers:
+        - event: Stake(uint256,address)
           handler: handleStake
-        - function: unstake(uint256,bool)
-          handler: handleUnstake
+        - event: UnStake(uint256,bool)
+          handler: handleUnStake
+      # callHandlers:
+      #   - function: stake(uint256,address)
+      #     handler: handleStake
+      #   - function: unstake(uint256,bool)
+      #     handler: handleUnstake
       file: ./src/OlympusStakingV1.ts
   #FRAX Bond Contract V1
   - kind: ethereum/contract
     name: FraxBond
     network: rinkeby
     source:
-      address: '0xd3D1aD79DC0eeF622f71E786270CFf53719D261C'
+      address: "0xd3D1aD79DC0eeF622f71E786270CFf53719D261C"
       abi: FraxBond
       # startBlock: 12280908
     mapping:
@@ -72,18 +79,23 @@ dataSources:
           file: ./abis/OlympusBondingCalculator.json
         - name: ERC20
           file: ./abis/ERC20.json
-      callHandlers:
-        - function: deposit(uint256,uint256,address)
+      eventHandlers:
+        - event: BondCreated(uint256,indexed uint256,indexed uint256,indexed uint256)
           handler: handleDeposit
-        - function: redeem(address,bool)
+        - event: BondRedeemed(indexed address,uint256,uint256)
           handler: handleRedeem
+      # callHandlers:
+      #   - function: deposit(uint256,uint256,address)
+      #     handler: handleDeposit
+      #   - function: redeem(address,bool)
+      #     handler: handleRedeem
       file: ./src/FRAXBondV1.ts
   #BRICK FRAX LP Bond Contract V1
   - kind: ethereum/contract
     name: BrickFraxBond
     network: rinkeby
     source:
-      address: '0x1cB859d5e17e785BB41e1BDe5A1FC962BfEE8A5e'
+      address: "0x1cB859d5e17e785BB41e1BDe5A1FC962BfEE8A5e"
       abi: BrickFraxBond
       # startBlock: 12154429
     mapping:
@@ -109,18 +121,23 @@ dataSources:
           file: ./abis/OlympusBondingCalculator.json
         - name: ERC20
           file: ./abis/ERC20.json
-      callHandlers:
-        - function: deposit(uint256,uint256,address)
+      eventHandlers:
+        - event: BondCreated(uint256,indexed uint256,indexed uint256,indexed uint256)
           handler: handleDeposit
-        - function: redeem(address,bool)
+        - event: BondRedeemed(indexed address,uint256,uint256)
           handler: handleRedeem
+      # callHandlers:
+      #   - function: deposit(uint256,uint256,address)
+      #     handler: handleDeposit
+      #   - function: redeem(address,bool)
+      #     handler: handleRedeem
       file: ./src/BRICKFRAXBondV1.ts
   #WToken
   - kind: ethereum/contract
     name: WrappedTokenBond
     network: rinkeby
     source:
-      address: '0x6fE3e4644a1CBB087D411A52C931B630cD5F899f'
+      address: "0x6fE3e4644a1CBB087D411A52C931B630cD5F899f"
       abi: WrappedTokenBond
       # startBlock: 12959821
     mapping:
@@ -146,18 +163,23 @@ dataSources:
           file: ./abis/OlympusBondingCalculator.json
         - name: ERC20
           file: ./abis/ERC20.json
-      callHandlers:
-        - function: deposit(uint256,uint256,address)
+      eventHandlers:
+        - event: BondCreated(uint256,indexed uint256,indexed uint256,indexed uint256)
           handler: handleDeposit
-        - function: redeem(address,bool)
+        - event: BondRedeemed(indexed address,uint256,uint256)
           handler: handleRedeem
+      # callHandlers:
+      #   - function: deposit(uint256,uint256,address)
+      #     handler: handleDeposit
+      #   - function: redeem(address,bool)
+      #     handler: handleRedeem
       file: ./src/ETHBondV1.ts
   #sBRICK
   - kind: ethereum/contract
     name: sBrickERC20V1
     network: rinkeby
     source:
-      address: '0x230a8dC3c34336372b75549915DeBAEAACCF129D'
+      address: "0x230a8dC3c34336372b75549915DeBAEAACCF129D"
       abi: sBrickERC20
       # startBlock: 12112800
     mapping:
@@ -173,7 +195,10 @@ dataSources:
           file: ./abis/OlympusERC20Token.json
         - name: UniswapV2Pair
           file: ./abis/UniswapV2Pair.json
-      callHandlers:
-        - function: rebase(uint256,uint256)
+      eventHandlers:
+        - event: LogRebase(indexed uint256,uint256,uint256)
           handler: rebaseFunction
+      # callHandlers:
+      #   - function: rebase(uint256,uint256)
+      #     handler: rebaseFunction
       file: ./src/sOlympusERC20V1.ts
