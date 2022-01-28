@@ -79,6 +79,8 @@ dataSources:
           file: ./abis/OlympusBondingCalculator.json
         - name: ERC20
           file: ./abis/ERC20.json
+        - name: UniswapV2Pair
+          file: ./abis/UniswapV2Pair.json
       eventHandlers:
         - event: BondCreated(uint256,indexed uint256,indexed uint256,indexed uint256)
           handler: handleDeposit
@@ -119,6 +121,8 @@ dataSources:
           file: ./abis/WrappedTokenBondDepository.json
         - name: BondingCalculator
           file: ./abis/OlympusBondingCalculator.json
+        - name: UniswapV2Pair
+          file: ./abis/UniswapV2Pair.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
@@ -163,6 +167,8 @@ dataSources:
           file: ./abis/OlympusBondingCalculator.json
         - name: ERC20
           file: ./abis/ERC20.json
+        - name: UniswapV2Pair
+          file: ./abis/UniswapV2Pair.json
       eventHandlers:
         - event: BondCreated(uint256,indexed uint256,indexed uint256,indexed uint256)
           handler: handleDeposit

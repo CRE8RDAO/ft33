@@ -1,6 +1,8 @@
 import {
-  DepositCall,
-  RedeemCall,
+  // DepositCall,
+  // RedeemCall,
+  BondCreated,
+  BondRedeemed,
 } from "../generated/BrickFraxBond/BrickFraxBond";
 import { Deposit, Redemption } from "../generated/schema";
 import { loadOrCreateTransaction } from "./utils/Transactions";
@@ -12,7 +14,7 @@ import { createDailyBondRecord } from "./utils/DailyBond";
 import { getPairUSD } from "./utils/Price";
 import { log } from "@graphprotocol/graph-ts";
 
-export function handleDeposit(call: DepositCall): void {
+export function handleDeposit(call: BondCreated): void {
   log.warning("BRICKFRAXBondV1 handleDeposit: {}, {}, {}, {}", [
     call.transaction.from.toString(),
     call.block.timestamp.toString(),
@@ -24,13 +26,13 @@ export function handleDeposit(call: DepositCall): void {
   let transaction = loadOrCreateTransaction(call.transaction, call.block);
   let token = loadOrCreateToken(BRICKFRAXLPBOND_TOKEN);
 
-  let amount = toDecimal(call.inputs._amount, 18);
+  let amount = toDecimal(call.params.deposit, 18);
   let deposit = new Deposit(transaction.id);
   deposit.transaction = transaction.id;
   deposit.brickie = brickie.id;
   deposit.amount = amount;
-  deposit.value = getPairUSD(call.inputs._amount, UNI_BRICKFRAX_PAIR);
-  deposit.maxPremium = toDecimal(call.inputs._maxPrice);
+  deposit.value = getPairUSD(call.params.deposit, UNI_BRICKFRAX_PAIR);
+  deposit.maxPremium = toDecimal(call.params.deposit);
   deposit.token = token.id;
   deposit.timestamp = transaction.timestamp;
   deposit.save();
@@ -44,7 +46,7 @@ export function handleDeposit(call: DepositCall): void {
   updateBrickieBalance(brickie, transaction);
 }
 
-export function handleRedeem(call: RedeemCall): void {
+export function handleRedeem(call: BondRedeemed): void {
   log.warning("BRICKFRAXBondV1 handleRedeem: {}, {}, {}, {}", [
     call.transaction.from.toString(),
     call.block.timestamp.toString(),
