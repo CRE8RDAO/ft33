@@ -100,7 +100,7 @@ dataSources:
     name: BrickFraxBond
     network: base
     source:
-      address: "0x1cB859d5e17e785BB41e1BDe5A1FC962BfEE8A5e"
+      address: "0x124741008f5f6bB1552C64278A33643C0F444AA0"
       abi: BrickFraxBond
       # startBlock: 12154429
     mapping:
