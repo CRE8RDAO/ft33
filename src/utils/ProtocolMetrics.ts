@@ -3,7 +3,7 @@ import { BrickERC20 } from "../../generated/BrickStaking/BrickERC20";
 import { sBrickERC20 } from "../../generated/BrickStaking/sBrickERC20";
 import { ERC20 } from "../../generated/BrickStaking/ERC20";
 import { UniswapV2Pair } from "../../generated/BrickStaking/UniswapV2Pair";
-// import { BrickStaking } from "../../generated/BrickStaking/BrickStaking";
+import { BrickStaking } from "../../generated/BrickStaking/BrickStaking";
 
 import { ProtocolMetric, Transaction } from "../../generated/schema";
 import {
@@ -145,7 +145,7 @@ function getMV_RFV(transaction: Transaction): BigDecimal[] {
     }
   }
 
-  // //BRICKETH
+  //BRICKETH
   // let brickethBalance = BigInt.fromI32(0)
   // let bricketh_value = BigDecimal.fromString("0")
   // let bricketh_rfv = BigDecimal.fromString("0")

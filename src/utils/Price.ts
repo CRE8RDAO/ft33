@@ -1,4 +1,4 @@
-import { UNI_BRICKFRAX_PAIR, } from "./Constants";  // removed SUSHI_USDC_ETH_PAIR
+import { UNI_BRICKFRAX_PAIR, SUSHI_USDC_ETH_PAIR } from "./Constants";
 import { Address, BigDecimal, BigInt, log } from "@graphprotocol/graph-ts";
 import { UniswapV2Pair } from "../../generated/BrickStaking/UniswapV2Pair";
 import { toDecimal } from "./Decimals";
@@ -6,18 +6,18 @@ import { toDecimal } from "./Decimals";
 let BIG_DECIMAL_1E9 = BigDecimal.fromString("1e9");
 let BIG_DECIMAL_1E12 = BigDecimal.fromString("1e12");
 
-// export function getETHUSDRate(): BigDecimal {
-//   let pair = UniswapV2Pair.bind(Address.fromString(SUSHI_USDC_ETH_PAIR));
+export function getETHUSDRate(): BigDecimal {
+  let pair = UniswapV2Pair.bind(Address.fromString(SUSHI_USDC_ETH_PAIR));
 
-//   let reserves = pair.getReserves();
-//   let reserve0 = reserves.value0.toBigDecimal();
-//   let reserve1 = reserves.value1.toBigDecimal();
+  let reserves = pair.getReserves();
+  let reserve0 = reserves.value0.toBigDecimal();
+  let reserve1 = reserves.value1.toBigDecimal();
 
-//   let ethRate = reserve0.div(reserve1).times(BIG_DECIMAL_1E12);
-//   log.debug("ETH rate {}", [ethRate.toString()]);
+  let ethRate = reserve0.div(reserve1).times(BIG_DECIMAL_1E12);
+  log.debug("ETH rate {}", [ethRate.toString()]);
 
-//   return ethRate;
-// }
+  return ethRate;
+}
 
 export function getBRICKUSDRate(): BigDecimal {
   let pair = UniswapV2Pair.bind(Address.fromString(UNI_BRICKFRAX_PAIR));

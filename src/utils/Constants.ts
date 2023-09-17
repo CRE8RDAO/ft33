@@ -30,8 +30,8 @@ export const BONDING_CALCULATOR =
   "0xcaaa0x03E82c27761DaaA69852cF5238Bc2597a14592cd6a2d4b26067a391e7b7d65c16bb2d5fa571a";  // wft? this isnt 
 export const BONDING_CALCULATOR_BLOCK = "12525357";
 
-// export const SUSHI_USDC_ETH_PAIR = "0x397ff1542f962076d0bfe58ea045ffa2d347aca0"; // dontneed dunks
-
+ export const SUSHI_USDC_ETH_PAIR = "0x883e4AE0A817f2901500971B353b5dD89Aa52184"; // base dunks added baseswap usdc-weth
+// FTW-WETH baseswap pair 0x5Ad7c9BDF103BC1416595FEc5F255Cb325aCF516
 
 // "FTW" at 0x3347453Ced85bd288D783d85cDEC9b01Ab90f9D8
 // "FTWBondingCalculator" at 0x2dEE203162C6A2573d50ada473176AAB99247873
