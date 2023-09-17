@@ -7,9 +7,9 @@ dataSources:
   #Staking Contract V1
   - kind: ethereum/contract
     name: BrickStaking
-    network: rinkeby
+    network: base
     source:
-      address: "0x6E2020bEF437e2E565F21DE7be0a3bb3a7f20eb3"
+      address: "0x6F82D82e6FEcB6d0dAF08b8fFD9772d596582F4A "
       abi: BrickStaking
       # startBlock: 12112800
     mapping:
@@ -51,9 +51,9 @@ dataSources:
   #FRAX Bond Contract V1
   - kind: ethereum/contract
     name: FraxBond
-    network: rinkeby
+    network: base
     source:
-      address: "0xd3D1aD79DC0eeF622f71E786270CFf53719D261C"
+      address: "0x81Dcb847fc51487ba39D228425344ecB53ebfB6E"
       abi: FraxBond
       # startBlock: 12280908
     mapping:
@@ -95,7 +95,7 @@ dataSources:
   #BRICK FRAX LP Bond Contract V1
   - kind: ethereum/contract
     name: BrickFraxBond
-    network: rinkeby
+    network: base
     source:
       address: "0x1cB859d5e17e785BB41e1BDe5A1FC962BfEE8A5e"
       abi: BrickFraxBond
@@ -139,9 +139,9 @@ dataSources:
   #WToken
   - kind: ethereum/contract
     name: WrappedTokenBond
-    network: rinkeby
+    network: base
     source:
-      address: "0x6fE3e4644a1CBB087D411A52C931B630cD5F899f"
+      address: "0x29d3646Af367dBa96E1b09A196c60FA20A3dAfF4"
       abi: WrappedTokenBond
       # startBlock: 12959821
     mapping:
@@ -183,9 +183,9 @@ dataSources:
   #sBRICK
   - kind: ethereum/contract
     name: sBrickERC20V1
-    network: rinkeby
+    network: base
     source:
-      address: "0x230a8dC3c34336372b75549915DeBAEAACCF129D"
+      address: "0xbede0Ae1a6043c056600eeED0d561dE9771Ef863"
       abi: sBrickERC20
       # startBlock: 12112800
     mapping:
