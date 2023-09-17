@@ -119,6 +119,22 @@ export class BrickStaking__epochResult {
     map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
     return map;
   }
+
+  getLength(): BigInt {
+    return this.value0;
+  }
+
+  getNumber(): BigInt {
+    return this.value1;
+  }
+
+  getEndTime(): BigInt {
+    return this.value2;
+  }
+
+  getDistribute(): BigInt {
+    return this.value3;
+  }
 }
 
 export class BrickStaking__warmupInfoResult {
@@ -141,6 +157,22 @@ export class BrickStaking__warmupInfoResult {
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     map.set("value3", ethereum.Value.fromBoolean(this.value3));
     return map;
+  }
+
+  getDeposit(): BigInt {
+    return this.value0;
+  }
+
+  getGons(): BigInt {
+    return this.value1;
+  }
+
+  getExpiry(): BigInt {
+    return this.value2;
+  }
+
+  getLock(): boolean {
+    return this.value3;
   }
 }
 

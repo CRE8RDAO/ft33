@@ -4,8 +4,8 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "auth": "graph auth --product hosted-service",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ ft33",
+    "auth": "yarn graph auth --studio bacb68abc5d0981f8d54729a8699984a",
+    "deploy": "graph deploy --studio ft33",
     "deploy-rinkeby": "graph deploy --product hosted-service 0xtaichi/god-mode",
     "create-local": "graph create --node http://pokt.drondin.xyz:18020/ olympus",
     "remove-local": "graph remove --node http://pokt.drondin.xyz:18020/ olympus",
@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "^0.58.0",
-    "@graphprotocol/graph-ts": "^0.25.0"
+    "@graphprotocol/graph-ts": "^0.31.0"
   }
 }

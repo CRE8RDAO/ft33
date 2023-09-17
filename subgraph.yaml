@@ -1,20 +1,23 @@
-specVersion: 0.0.2
+specVersion: 0.0.4
 description: CRE8RDAO DAO Subgraph
-repository: https://github.com/CRE8RDAO/gm-subgraph
+repository: https://github.com/CRE8RDAO/ft33
 schema:
   file: ./schema.graphql
+features:
+  - fullTextSearch
+  - ipfsOnEthereumContracts
 dataSources:
   #Staking Contract V1
   - kind: ethereum/contract
     name: BrickStaking
     network: base
     source:
-      address: "0x6F82D82e6FEcB6d0dAF08b8fFD9772d596582F4A "
+      address: "0x6F82D82e6FEcB6d0dAF08b8fFD9772d596582F4A"
       abi: BrickStaking
       # startBlock: 12112800
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - BrickStaking
@@ -41,7 +44,7 @@ dataSources:
         - event: Stake(uint256,address)
           handler: handleStake
         - event: UnStake(uint256,bool)
-          handler: handleUnStake
+          handler: handleUnstake
       # callHandlers:
       #   - function: stake(uint256,address)
       #     handler: handleStake
@@ -58,7 +61,7 @@ dataSources:
       # startBlock: 12280908
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - FRAXBondDeposit
@@ -102,7 +105,7 @@ dataSources:
       # startBlock: 12154429
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - BrickFraxBond
@@ -146,7 +149,7 @@ dataSources:
       # startBlock: 12959821
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - WrappedTokenBond
@@ -190,7 +193,7 @@ dataSources:
       # startBlock: 12112800
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - sBrickERC20V1
